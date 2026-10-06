@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>MoonBot V3</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+.header {
+    height: 65px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.status {
+    color: #16a34a;
+    font-size: 13px;
+}
+
+.chat {
+    max-width: 900px;
+    margin: auto;
+
+    padding: 25px;
+
+    padding-bottom: 110px;
+}
+
+.mesej {
+    margin-bottom: 25px;
+}
+
+.nama {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.teks {
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.pengguna {
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 15px;
+}
+
+.moonbot {
+    padding: 10px;
+}
+
+.input-area {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background: white;
+
+    border-top: 1px solid #ddd;
+
+    padding: 12px;
+}
+
+.input-dalam {
+    max-width: 850px;
+    margin: auto;
+
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+
+    padding: 14px;
+
+    border: 1px solid #bbb;
+
+    border-radius: 15px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+button {
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 0 20px;
+
+    background: #111827;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #374151;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <div>
+
+        <div class="logo">
+            🌙 MoonBot V3
+        </div>
+
+        <div class="status">
+            ● Dalam talian
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div
+    id="chat"
+    class="chat">
+
+</div>
+
+
+
+<div class="input-area">
+
+    <div class="input-dalam">
+
+        <input
+            id="input"
+            type="text"
+            placeholder="Tanya MoonBot..."
+            autocomplete="off"
+        >
+
+        <button
+            onclick="hantar()">
+
+            Hantar
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   MAKLUMAT MOONBOT
+========================= */
+
+const pencipta =
+    "Nazreel";
+
+const pembangun =
+    "ChatGPT";
+
+const kodProjek =
+    "34569202";
+
+
+
+/* =========================
+   RUANG CHAT
+========================= */
+
+const chat =
+    document.getElementById("chat");
+
+const input =
+    document.getElementById("input");
+
+
+
+/* =========================
+   TAMBAH MESEJ
+========================= */
+
+function tambahMesej(
+    nama,
+    teks,
+    kelas
+) {
+
+    const mesej =
+        document.createElement("div");
+
+    mesej.className =
+        "mesej " + kelas;
+
+
+    const namaDiv =
+        document.createElement("div");
+
+    namaDiv.className =
+        "nama";
+
+    namaDiv.textContent =
+        nama;
+
+
+    const teksDiv =
+        document.createElement("div");
+
+    teksDiv.className =
+        "teks";
+
+    teksDiv.textContent =
+        teks;
+
+
+    mesej.appendChild(
+        namaDiv
+    );
+
+    mesej.appendChild(
+        teksDiv
+    );
+
+
+    chat.appendChild(
+        mesej
+    );
+
+
+    window.scrollTo(
+        0,
+        document.body.scrollHeight
+    );
+
+}
+
+
+
+/* =========================
+   JAWAPAN MOONBOT
+========================= */
+
+function jawab(soalan) {
+
+    const s =
+        soalan
+        .toLowerCase()
+        .trim();
+
+
+
+    /* IDENTITI */
+
+    if (
+        s.includes("siapa awak") ||
+        s.includes("awak siapa") ||
+        s.includes("nama awak") ||
+        s.includes("kau siapa")
+    ) {
+
+        return (
+            "Saya MoonBot V3 🌙🤖\n\n" +
+
+            "Pencipta: " +
+            pencipta +
+
+            "\nDibangunkan dengan bantuan: " +
+            pembangun +
+
+            "\nKod projek: " +
+            kodProjek
+        );
+
+    }
+
+
+
+    /* PENCIPTA */
+
+    if (
+        s.includes("siapa cipta") ||
+        s.includes("siapa yang cipta") ||
+        s.includes("siapa pencipta") ||
+        s.includes("siapa buat") ||
+        s.includes("siapa yang buat") ||
+        s.includes("siapa mencipta") ||
+        s.includes("siapa yang mencipta") ||
+        s.includes("siapa buat moonbot") ||
+        s.includes("siapa cipta moonbot") ||
+        s.includes("siapa cipta dia") ||
+        s.includes("siapa buat dia")
+    ) {
+
+        return (
+            "MoonBot V3 dicipta oleh " +
+            pencipta +
+            " 👤🌙\n\n" +
+
+            "MoonBot dibangunkan dengan bantuan " +
+            pembangun +
+            " 🤖.\n\n" +
+
+            "Kod projek: " +
+            kodProjek
+        );
+
+    }
+
+
+
+    /* HAI */
+
+    if (
+        s === "hai" ||
+        s === "hi" ||
+        s === "hello" ||
+        s === "helo"
+    ) {
+
+        return (
+            "Hai! 😎🌙\n\n" +
+            "Saya MoonBot V3.\n" +
+            "Apa yang kau nak tanya?"
+        );
+
+    }
+
+
+
+    /* APA KHABAR */
+
+    if (
+        s.includes("apa khabar") ||
+        s.includes("kau sihat")
+    ) {
+
+        return (
+            "Saya okay! 🤖🔥\n" +
+            "Terima kasih sebab tanya."
+        );
+
+    }
+
+
+
+    /* BUAT APA */
+
+    if (
+        s.includes("buat apa") ||
+        s.includes("tengah buat apa")
+    ) {
+
+        return (
+            "Saya sedang berbual dengan kau sekarang 😂🌙"
+        );
+
+    }
+
+
+
+    /* MASA */
+
+    if (
+        s.includes("pukul berapa") ||
+        s.includes("masa sekarang") ||
+        s.includes("sekarang pukul berapa")
+    ) {
+
+        const masa =
+            new Date().toLocaleTimeString(
+                "ms-MY",
+                {
+                    timeZone:
+                    "Asia/Kuala_Lumpur"
+                }
+            );
+
+        return (
+            "Sekarang pukul " +
+            masa +
+            " 🇲🇾"
+        );
+
+    }
+
+
+
+    /* TARIKH */
+
+    if (
+        s.includes("tarikh hari ini") ||
+        s.includes("hari ini tarikh berapa")
+    ) {
+
+        const tarikh =
+            new Date().toLocaleDateString(
+                "ms-MY",
+                {
+                    timeZone:
+                    "Asia/Kuala_Lumpur",
+
+                    weekday:
+                    "long",
+
+                    year:
+                    "numeric",
+
+                    month:
+                    "long",
+
+                    day:
+                    "numeric"
+                }
+            );
+
+        return (
+            "Hari ini ialah " +
+            tarikh +
+            " 🇲🇾"
+        );
+
+    }
+
+
+
+    /* PKSK */
+
+    if (
+        s.includes("pksk")
+    ) {
+
+        return (
+            "PKSK ialah Pentaksiran Kemasukan Sekolah Khusus. 📚"
+        );
+
+    }
+
+
+
+    /* SEJARAH */
+
+    if (
+        s.includes("sejarah")
+    ) {
+
+        return (
+            "Sejarah ialah kajian tentang peristiwa yang berlaku pada masa lalu. 📚"
+        );
+
+    }
+
+
+
+    /* SAINS */
+
+    if (
+        s.includes("sains")
+    ) {
+
+        return (
+            "Sains ialah bidang yang mengkaji alam, jirim, tenaga, benda hidup dan fenomena semula jadi. 🔬"
+        );
+
+    }
+
+
+
+    /* MATEMATIK */
+
+    if (
+        s.includes("matematik") ||
+        s.includes("math")
+    ) {
+
+        return (
+            "Boleh! 🧮 Berikan soalan Matematik kepada saya."
+        );
+
+    }
+
+
+
+    /* ROBLOX */
+
+    if (
+        s.includes("roblox")
+    ) {
+
+        return (
+            "Roblox ialah platform permainan dalam talian yang mempunyai banyak permainan dan pengalaman ciptaan pengguna. 🎮"
+        );
+
+    }
+
+
+
+    /* MALAYSIA */
+
+    if (
+        s.includes("malaysia")
+    ) {
+
+        return (
+            "Malaysia ialah negara di Asia Tenggara 🇲🇾 yang terdiri daripada Semenanjung Malaysia, Sabah dan Sarawak."
+        );
+
+    }
+
+
+
+    /* TERIMA KASIH */
+
+    if (
+        s.includes("terima kasih") ||
+        s.includes("thanks")
+    ) {
+
+        return (
+            "Sama-sama! 😎🌙"
+        );
+
+    }
+
+
+
+    /* BYE */
+
+    if (
+        s === "bye" ||
+        s.includes("selamat tinggal")
+    ) {
+
+        return (
+            "Bye! 👋 Jumpa lagi dengan MoonBot 🌙"
+        );
+
+    }
+
+
+
+    /* JAWAPAN DEFAULT */
+
+    return (
+        "Hmm 🤔 saya belum tahu jawapan untuk soalan itu.\n\n" +
+        "Cuba tanya saya dengan cara yang lain."
+    );
+
+}
+
+
+
+/* =========================
+   HANTAR
+========================= */
+
+function hantar() {
+
+    const teks =
+        input.value.trim();
+
+
+    if (
+        teks === ""
+    ) {
+
+        return;
+
+    }
+
+
+    tambahMesej(
+        "👤 Anda",
+        teks,
+        "pengguna"
+    );
+
+
+    input.value =
+        "";
+
+
+    const jawapan =
+        jawab(teks);
+
+
+    tambahMesej(
+        "🤖 MoonBot",
+        jawapan,
+        "moonbot"
+    );
+
+}
+
+
+
+/* =========================
+   ENTER
+========================= */
+
+input.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            hantar();
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   MESEJ SELAMAT DATANG
+========================= */
+
+tambahMesej(
+
+    "🤖 MoonBot",
+
+    "Hai! 👋\n\n" +
+
+    "Saya MoonBot V3 🌙\n\n" +
+
+    "Pencipta: Nazreel\n" +
+
+    "Dibangunkan dengan bantuan: ChatGPT\n" +
+
+    "Kod projek: 34569202\n\n" +
+
+    "Cuba tanya: \"Siapa cipta dia?\" 😎",
+
+    "moonbot"
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>
